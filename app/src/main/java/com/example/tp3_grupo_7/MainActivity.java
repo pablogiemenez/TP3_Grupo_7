@@ -1,9 +1,12 @@
 package com.example.tp3_grupo_7;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,7 +23,11 @@ public class MainActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         Button loginButton = findViewById(R.id.loginButton);  // Variable local
-
+        TextView registrate= findViewById(R.id.registerTextView);
+        registrate.setOnClickListener(v->{
+            Intent i=new Intent(this,registro_activity.class);
+            startActivity(i);
+        });
         // Configurar la acción del botón de inicio de sesión
         loginButton.setOnClickListener(v -> {
             String username = usernameEditText.getText().toString();
