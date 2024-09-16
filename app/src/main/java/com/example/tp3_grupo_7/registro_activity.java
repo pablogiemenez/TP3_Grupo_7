@@ -1,6 +1,8 @@
 package com.example.tp3_grupo_7;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,8 @@ public class registro_activity extends AppCompatActivity {
             
             if(!nombre.isEmpty()&&!mail.isEmpty()&&!contrasenia2.isEmpty()&&!contrasenia.isEmpty()){
                 if(contrasenia2.equals(contrasenia)){
+                    agregarUsuario(nombre,mail,contrasenia);
+                    //limpiarControlesDeTexto();
                     Toast.makeText(this, "usuario agregado", Toast.LENGTH_SHORT).show();
                     Intent i= new Intent(this,MainActivity.class);
                     startActivity(i);
@@ -51,5 +55,21 @@ public class registro_activity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    private void agregarUsuario(String nombre, String correo,String contrasenia){
+        AdminSQLiteOpenHelper admin= new AdminSQLiteOpenHelper(this,"ParkingControl",null,1);
+        SQLiteDatabase BaseDeDatos=admin.getWritableDatabase();
+        ContentValues registro= new ContentValues();
+        registro.put("nombre",nombre);
+        registro.put("correo",correo);
+        registro.put("contrasenia",contrasenia);
+        BaseDeDatos.insert("Usuarios",null,registro);
+        BaseDeDatos.close();
+    }
+    private void limpiarControlesDeTexto(){
+        et_nombre.setText("");
+        et_correo_electronico.setText("");
+        et_contrasenia.setText("");
+        et_contrasenia2.setText("");
     }
 }
