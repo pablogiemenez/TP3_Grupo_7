@@ -3,6 +3,8 @@ package com.example.tp3_grupo_7;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +40,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Por favor, complete ambos campos", Toast.LENGTH_SHORT).show();
             } else {
                 // Aquí iría la lógica para validar el inicio de sesión con la base de datos
+                iniciarSesion(username, password);
                 Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public Boolean iniciarSesion(String username, String password){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ParkingControl", null , 1);
+        SQLiteDatabase basededatos = admin.getWritableDatabase();
+
+        Cursor fila = basededatos.rawQuery("select contrasenia where nombre=" + username, null);
+        if(fila.moveToFirst()){
+            if (fila.getString(0) == password){
+                return true;
+            }
+        }
+        return false;
     }
 }

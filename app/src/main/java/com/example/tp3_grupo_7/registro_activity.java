@@ -56,15 +56,19 @@ public class registro_activity extends AppCompatActivity {
             return insets;
         });
     }
+    //Metodo para agregar a la base de datos
     private void agregarUsuario(String nombre, String correo,String contrasenia){
         AdminSQLiteOpenHelper admin= new AdminSQLiteOpenHelper(this,"ParkingControl",null,1);
         SQLiteDatabase BaseDeDatos=admin.getWritableDatabase();
         ContentValues registro= new ContentValues();
+
         registro.put("nombre",nombre);
         registro.put("correo",correo);
         registro.put("contrasenia",contrasenia);
+
         BaseDeDatos.insert("Usuarios",null,registro);
         BaseDeDatos.close();
+        limpiarControlesDeTexto();
     }
     private void limpiarControlesDeTexto(){
         et_nombre.setText("");
