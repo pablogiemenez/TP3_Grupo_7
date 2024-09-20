@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Campos para los elementos de UI
     private EditText usernameEditText, passwordEditText;
 
     @Override
@@ -21,41 +20,60 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Asignar los elementos de la UI a variables
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         Button loginButton = findViewById(R.id.loginButton);  // Variable local
-        TextView registrate= findViewById(R.id.registerTextView);
-        registrate.setOnClickListener(v->{
-            Intent i=new Intent(this,registro_activity.class);
+        TextView registrate = findViewById(R.id.registerTextView);
+
+        registrate.setOnClickListener(v -> {
+            Intent i = new Intent(this, registro_activity.class);
             startActivity(i);
         });
-        // Configurar la acción del botón de inicio de sesión
+
         loginButton.setOnClickListener(v -> {
             String username = usernameEditText.getText().toString();
             String password = passwordEditText.getText().toString();
 
-            // Validar que los campos no estén vacíos
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(MainActivity.this, "Por favor, complete ambos campos", Toast.LENGTH_SHORT).show();
             } else {
-                // Aquí iría la lógica para validar el inicio de sesión con la base de datos
-                iniciarSesion(username, password);
-                Toast.makeText(MainActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                if (iniciarSesion(username, password)) {
+                    Intent intent = new Intent(this, HomeActivity.class);
+                    intent.putExtra("USERNAME", username);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    public Boolean iniciarSesion(String username, String password){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ParkingControl", null , 1);
-        SQLiteDatabase basededatos = admin.getWritableDatabase();
+    public Boolean iniciarSesion(String username, String password) {
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ParkingControl", null, 1);
+        SQLiteDatabase basededatos = admin.getReadableDatabase();
 
-        Cursor fila = basededatos.rawQuery("select contrasenia where nombre=" + username, null);
-        if(fila.moveToFirst()){
-            if (fila.getString(0) == password){
+        Cursor fila = basededatos.rawQuery("SELECT contrasenia FROM Usuarios WHERE nombre = ?", new String[]{username});
+
+
+        if (fila.moveToFirst()) {
+            String storedPassword = fila.getString(0);
+
+
+            if (storedPassword.equals(password)) {
+                fila.close();
+                basededatos.close();
+                Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
                 return true;
+            } else {
+
+                Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
             }
+        } else {
+
+            Toast.makeText(this, "El usuario no existe", Toast.LENGTH_SHORT).show();
         }
+
+        fila.close();
+        basededatos.close();
         return false;
     }
+
 }

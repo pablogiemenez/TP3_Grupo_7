@@ -13,11 +13,10 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase BaseDeDatos) {
-        BaseDeDatos.execSQL("create table Usuarios (nombre text,correo text,contrasenia text)");
+        BaseDeDatos.execSQL("CREATE TABLE Usuarios (" + "nombre TEXT, " + "correo TEXT UNIQUE, " + "contrasenia TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase BaseDeDatos, int i, int i1) {
-
     }
 }
