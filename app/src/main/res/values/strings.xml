@@ -10,9 +10,15 @@
     <string name="app_title">Parking control</string>
     <string name="nombre">Nombre</string>
     <string name="correo_electronico">Correo Electrónico</string>
-    <string name="registrar_parqueo">Registrar parqueo</string>
-    <string name="numero_matricula">Nro de matricula</string>
+
+    <!-- Cadenas añadidas para activity_registro_parqueo.xml -->
+    <string name="registrar_parqueo">Registrar Parqueo</string>
+    <string name="numero_matricula">Número de Matrícula</string>
     <string name="tiempo">Tiempo</string>
     <string name="cancelar_UPPERCASE">CANCELAR</string>
     <string name="registrar_UPPERCASE">REGISTRAR</string>
+
+    <!-- Cadenas añadidas para HomeActivity.java -->
+    <string name="navigation_drawer_open">Abrir menú de navegación</string>
+    <string name="navigation_drawer_close">Cerrar menú de navegación</string>
 </resources>
