@@ -10,4 +10,9 @@
     <string name="app_title">Parking control</string>
     <string name="nombre">Nombre</string>
     <string name="correo_electronico">Correo Electrónico</string>
+    <string name="registrar_parqueo">Registrar parqueo</string>
+    <string name="numero_matricula">Nro de matricula</string>
+    <string name="tiempo">Tiempo</string>
+    <string name="cancelar_UPPERCASE">CANCELAR</string>
+    <string name="registrar_UPPERCASE">REGISTRAR</string>
 </resources>
