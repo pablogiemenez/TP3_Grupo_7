@@ -10,7 +10,7 @@
     <string name="app_title">Parking control</string>
     <string name="nombre">Nombre</string>
     <string name="correo_electronico">Correo Electrónico</string>
-
+    <string name="mi_cuenta">Mi cuenta</string>
     <!-- Cadenas añadidas para activity_registro_parqueo.xml -->
     <string name="registrar_parqueo">Registrar Parqueo</string>
     <string name="numero_matricula">Número de Matrícula</string>

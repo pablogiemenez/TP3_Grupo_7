@@ -1,13 +1,20 @@
 package com.example.tp3_grupo_7;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationBarItemView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+
+import android.view.MenuItem;
 import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
@@ -15,7 +22,7 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private FloatingActionButton fabAddParqueo;
-
+    private MenuItem nav_parqueo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,24 @@ public class HomeActivity extends AppCompatActivity {
         // Configurar el NavigationView (menú lateral)
         NavigationView navigationView = findViewById(R.id.nav_view);
 
+         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+             @SuppressLint("NonConstantResourceId")
+             @Override
+             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                 switch(item.getItemId()){
+                     case R.id.nav_parqueos:
+                            startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                         return true;
+
+                     case R.id.nav_mi_cuenta:
+                         startActivity(new Intent(HomeActivity.this, activity_mi_cuenta.class));
+                         return true;
+                     default:
+                         return false;
+                 }
+
+             }
+         });
         // Configurar el FloatingActionButton para agregar parqueo
         fabAddParqueo = findViewById(R.id.fab_add_parqueo);
         fabAddParqueo.setOnClickListener(new View.OnClickListener() {
