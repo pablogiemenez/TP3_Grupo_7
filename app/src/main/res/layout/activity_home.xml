@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        app:title="Parking Control"
+        app:subtitle="Parqueos"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <!-- Contenido principal de la pantalla -->
@@ -41,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@android:drawable/ic_input_add"
-            android:contentDescription="Agregar parqueo"
+            android:contentDescription="@string/agregar_parqueo"
             app:backgroundTint="@android:color/holo_blue_light"
             app:tint="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"

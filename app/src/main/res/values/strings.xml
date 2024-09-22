@@ -21,4 +21,7 @@
     <!-- Cadenas añadidas para HomeActivity.java -->
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
+
+    <!-- Cadena añadida para el FloatingActionButton -->
+    <string name="agregar_parqueo">Agregar parqueo</string> <!-- Cadena añadida -->
 </resources>
