@@ -14,9 +14,17 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase BaseDeDatos) {
         BaseDeDatos.execSQL("CREATE TABLE Usuarios (" + "nombre TEXT, " + "correo TEXT UNIQUE, " + "contrasenia TEXT)");
+
+        BaseDeDatos.execSQL("CREATE TABLE Parqueos (matricula TEXT, tiempo INTEGER)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase BaseDeDatos, int i, int i1) {
+    }
+
+    public void insertarParqueo(String matricula, int tiempo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("INSERT INTO Parqueos (matricula, tiempo) VALUES ('" + matricula + "', " + tiempo + ")");
+        db.close();
     }
 }

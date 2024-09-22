@@ -46,13 +46,18 @@ public class registro_parqueo_activity extends AppCompatActivity {
     // Método para registrar el parqueo
     private void registrarParqueo() {
         String numeroMatricula = numeroMatriculaEditText.getText().toString();
-        String tiempo = tiempoEditText.getText().toString();
+        String tiempoStr = tiempoEditText.getText().toString();
 
-        if (numeroMatricula.isEmpty() || tiempo.isEmpty()) {
+        if (numeroMatricula.isEmpty() || tiempoStr.isEmpty()) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
         } else {
-            // Aquí iría la lógica para guardar el parqueo
+            int tiempo = Integer.parseInt(tiempoStr);
+            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracion", null, 1);
+
+            admin.insertarParqueo(numeroMatricula, tiempo);
+
             Toast.makeText(this, "Parqueo registrado: " + numeroMatricula + " por " + tiempo + " horas", Toast.LENGTH_LONG).show();
+
             finish();  // Cierra la actividad después de registrar
         }
     }
