@@ -49,14 +49,14 @@ public class registro_parqueo_activity extends AppCompatActivity {
     private void registrarParqueo() {
         String numeroMatricula = numeroMatriculaEditText.getText().toString();
         String tiempoStr = tiempoEditText.getText().toString();
-        SharedPreferences usuario = getSharedPreferences("usuario", Context.MODE_PRIVATE);
+        SharedPreferences usuario = getSharedPreferences("usuarioEnSesion", Context.MODE_PRIVATE);
 
         if (numeroMatricula.isEmpty() || tiempoStr.isEmpty()) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
         } else {
             int tiempo = Integer.parseInt(tiempoStr);
             AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ParkingControl", null, 1);
-            admin.insertarParqueo(numeroMatricula, tiempo, usuario.getString("usuarioEnSesion",""));
+            admin.insertarParqueo(numeroMatricula, tiempo, usuario.getString("nombre",""));
 
             Toast.makeText(this, "Parqueo registrado: " + numeroMatricula + " por " + tiempo + " horas", Toast.LENGTH_LONG).show();
 
