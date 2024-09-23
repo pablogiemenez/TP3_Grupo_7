@@ -2,7 +2,9 @@ package com.example.tp3_grupo_7;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -39,7 +41,12 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 if (iniciarSesion(username, password)) {
                     Intent intent = new Intent(this, HomeActivity.class);
-                    intent.putExtra("USERNAME", username);
+                    SharedPreferences usuario = getSharedPreferences("usuarioEnSesion", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor obj_editor = usuario.edit();
+                    obj_editor.putString("correo" ,getCorreoUsuario(username));
+                    obj_editor.putString("nombre", username);
+                    obj_editor.commit();
+
                     startActivity(intent);
                 }
             }
@@ -74,6 +81,19 @@ public class MainActivity extends AppCompatActivity {
         fila.close();
         basededatos.close();
         return false;
+    }
+
+    public String getCorreoUsuario (String username){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "ParkingControl", null, 1);
+        SQLiteDatabase basededatos = admin.getReadableDatabase();
+
+        Cursor fila = basededatos.rawQuery("SELECT correo FROM Usuarios WHERE nombre = ?", new String[]{username});
+
+        if(fila.moveToFirst()){
+            String correoUsuario = fila.getString(0);
+            return correoUsuario;
+        }
+        return null;
     }
 
 }

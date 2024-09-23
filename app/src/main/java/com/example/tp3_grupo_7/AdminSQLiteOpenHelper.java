@@ -1,5 +1,6 @@
 package com.example.tp3_grupo_7;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -15,16 +16,21 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase BaseDeDatos) {
         BaseDeDatos.execSQL("CREATE TABLE Usuarios (" + "nombre TEXT, " + "correo TEXT UNIQUE, " + "contrasenia TEXT)");
 
-        BaseDeDatos.execSQL("CREATE TABLE Parqueos (matricula TEXT, tiempo INTEGER)");
+        BaseDeDatos.execSQL("CREATE TABLE Parqueos (matricula TEXT, tiempo INTEGER, usuarioParqueos TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase BaseDeDatos, int i, int i1) {
     }
 
-    public void insertarParqueo(String matricula, int tiempo) {
+    public void insertarParqueo(String matricula, int tiempo, String usuarioParqueos) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("INSERT INTO Parqueos (matricula, tiempo) VALUES ('" + matricula + "', " + tiempo + ")");
+        ContentValues valores = new ContentValues();
+        valores.put("matricula",matricula);
+        valores.put("tiempo",tiempo);
+        valores.put("usuarioParqueso",usuarioParqueos);
+        db.insert("Parqueos",null, valores);
+
         db.close();
     }
 }

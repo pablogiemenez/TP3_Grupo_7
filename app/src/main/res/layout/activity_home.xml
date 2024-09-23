@@ -43,6 +43,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:tint="@android:color/white" />
 
+            <GridView
+                android:id="@+id/gridview_parqueos"
+                android:layout_width="409dp"
+                android:layout_height="593dp"
+                android:numColumns="2"
+                android:gravity="center"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -11,6 +11,7 @@
     <string name="nombre">Nombre</string>
     <string name="correo_electronico">Correo Electrónico</string>
     <string name="mi_cuenta">Mi cuenta</string>
+
     <!-- Cadenas añadidas para activity_registro_parqueo.xml -->
     <string name="registrar_parqueo">Registrar Parqueo</string>
     <string name="numero_matricula">Número de Matrícula</string>
@@ -21,6 +22,11 @@
     <!-- Cadenas añadidas para HomeActivity.java -->
     <string name="navigation_drawer_open">Abrir menú de navegación</string>
     <string name="navigation_drawer_close">Cerrar menú de navegación</string>
+
+    <!-- Cadenas añadidas para el drawe_menu.xml -->
+    <string name="nav_parqueos">Parqueos</string>
+    <string name="nav_mi_cuenta">Mi Cuenta</string>
+    <string name="nav_cerrar_sesion">Cerrar Sesión</string>
 
     <!-- Cadena añadida para el FloatingActionButton -->
     <string name="agregar_parqueo">Agregar parqueo</string> <!-- Cadena añadida -->
