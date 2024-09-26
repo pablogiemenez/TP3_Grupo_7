@@ -28,8 +28,8 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
         ContentValues valores = new ContentValues();
         valores.put("matricula",matricula);
         valores.put("tiempo",tiempo);
-        valores.put("usuarioParqueso",usuarioParqueos);
-        db.insert("Parqueos",null, valores);
+        valores.put("usuarioParqueos",usuarioParqueos);
+        db.insertOrThrow("Parqueos",null, valores);
 
         db.close();
     }

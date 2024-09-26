@@ -1,6 +1,7 @@
 package com.example.tp3_grupo_7;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -60,7 +61,13 @@ public class registro_parqueo_activity extends AppCompatActivity {
 
             Toast.makeText(this, "Parqueo registrado: " + numeroMatricula + " por " + tiempo + " horas", Toast.LENGTH_LONG).show();
 
+            /*
             finish();  // Cierra la actividad después de registrar
+             */
+
+            Intent i = new Intent(registro_parqueo_activity.this, HomeActivity.class);
+            startActivity(i); //Lo cambie por un intent asi recarga el home y se muestra el parqueo
+
         }
     }
 }
