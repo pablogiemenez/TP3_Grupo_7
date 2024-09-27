@@ -62,31 +62,35 @@ public class HomeActivity extends AppCompatActivity {
              @SuppressLint("NonConstantResourceId")
              @Override
              public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                 switch(item.getItemId()){
-                     case R.id.nav_parqueos:
-                            startActivity(new Intent(HomeActivity.this, HomeActivity.class));
-                         return true;
+                 int id=item.getItemId();
 
-                     case R.id.nav_mi_cuenta:
-                         startActivity(new Intent(HomeActivity.this, activity_mi_cuenta.class));
-                         return true;
-
-                     case R.id.nav_cerrar_sesion:
-                         startActivity(new Intent(HomeActivity.this, MainActivity.class));
-                         return true;
-
-                     default:
-                         return false;
+                 if(id==R.id.nav_parqueos){
+                     startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+                     return true;
                  }
+                 if(id==R.id.nav_cerrar_sesion){
+                     startActivity(new Intent(HomeActivity.this, MainActivity.class));
+                     return true;
+                 }
+                 if(id==R.id.nav_mi_cuenta){
+                     startActivity(new Intent(HomeActivity.this, activity_mi_cuenta.class));
+                     return true;
+                 }
+                 Toast.makeText(HomeActivity.this, "no se pudo acceder", Toast.LENGTH_SHORT).show();
+                 return false;
+
 
              }
          });
 
          // Mostrar parqueos
         GridParqueos = findViewById(R.id.gridview_parqueos);
-        if(usuarioEnSesion.getString("nombre","") != null){
-            mostrarParqueos(usuarioEnSesion.getString("nombre",""));
-        }
+
+        mostrarParqueos(usuarioEnSesion.getString("nombre",""));
+
+        SharedPreferences UsuarioEnSesion=getSharedPreferences("usuarioEnSesion",MODE_PRIVATE);
+        String CorreoUsuarioSesion= UsuarioEnSesion.getString("correo","");
+        String NombreUsuarioSesion= UsuarioEnSesion.getString("nombre","");
 
         // Configurar el usuarioEnSesion en el nav
         View headerView =  navigationView.getHeaderView(0);
